@@ -1,22 +1,24 @@
-input_test_num = int(input())
+num_list = []
 
-dict_list = {}
-
-
-def find_key_from_dict(dict, search_val):
-    return_value = [key for key, value in dict.items() if value == search_val]
-    return return_value
+def find_divisor(num):
+    num_list.clear()
+    for i in range(1, num+1):
+        if num % i == 0:
+            num_list.append(i)
+    return num_list
 
 while True:
-    univ_num = int(input())
-    for i in range(0, univ_num):
-        univ_name, drink_num = input().split()
-        dict_list[univ_name] = int(drink_num)
-    all_value = dict_list.values()
-    max_value = max(all_value)
-
-    print(find_key_from_dict(dict_list, max_value)[0])
-
-    input_test_num -= 1
-    if input_test_num == 0:
+    input_num = int(input())
+    if input_num == -1:
         break
+    list_sum = sum(find_divisor(input_num))
+    if list_sum - input_num == input_num:
+        dab = f"{input_num} = "
+        for num in num_list:
+            if num == input_num:
+                break
+            else:
+                dab += str(num) + " + "
+        print(dab[:-3])
+    else:
+        print(f"{input_num} is NOT perfect.")
